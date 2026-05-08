@@ -1,36 +1,105 @@
-# Pokédex Angular
+# 🎮 PokeDex — Despliegue en Azure Static Web Apps
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![codecov](https://codecov.io/gh/keilermora/pokedex-angular/branch/master/graph/badge.svg?token=9E0D28IOFT)](https://codecov.io/gh/keilermora/pokedex-angular)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+Aplicación web desarrollada en **Angular** que permite explorar las 151 especies de Pokémon de la primera generación, mostrando información detallada sobre sus características y habilidades.
 
-[https://keilermora.github.io/pokedex-angular/](https://keilermora.github.io/pokedex-angular/)
+---
 
-La aplicación muestra el listado y el detalle de los Pokémon de las primeras 3 generaciones.
+## 🔗 URL Pública
 
-La imagen que representa un Pokémon en el listado muestra las variaciones que estos tuvieron durante las primeras versiones, desde la versión Green (1996) hasta la version Emerald (2005).
+👉 [https://gentle-dune-0b529080f.7.azurestaticapps.net](https://gentle-dune-0b529080f.7.azurestaticapps.net)
 
-Los detalles de un Pokémon individual muestra sus estadísticas base y los registros de la Pokédex de las diferentes versiones.
+---
 
-El proyecto fue desarrollado usando la librería de JavaScript [Angular](https://angular.io/) para crear la interfaz de usuario, en comunicación con la Api RESTful [PokéAPI](https://pokeapi.co/).
+## ☁️ Plataforma de Despliegue
 
-## Requisitos mínimos
+**Azure Static Web Apps** — Microsoft Azure for Students
 
-- [Nodejs](https://nodejs.org) con soporte de largo plazo (LTS).
-- Un navegador web
+| Parámetro | Valor |
+|---|---|
+| Suscripción | Azure for Students |
+| Grupo de recursos | pokemon |
+| Tipo de plan | Gratuito |
+| Región | East US 2 |
+| Origen del código | GitHub |
+| Rama | main |
+| Ubicación de salida | dist/pokedex-angular |
 
-## Ambiente de pruebas
+---
 
-Ejecutar en la raíz del proyecto:
+## 📁 Repositorio GitHub
 
-```
-npm start
-```
+👉 [https://github.com/Gersonjim/pokedex](https://github.com/Gersonjim/pokedex)
 
-## Referencias
+---
 
-- [Angular](https://angular.io/): One framework.
-- [Angular Folder Structure](https://angular-folder-structure.readthedocs.io/en/latest/): Create a skeleton structure which is flexible for projects big or small.
-- [Font Awesome](https://fontawesome.com/): The web's most popular icon set and toolkit.
-- [Normalize.css](https://necolas.github.io/normalize.css/): A modern, HTML5-ready alternative to CSS resets.
-- [PokéAPI](https://pokeapi.co/): The RESTful Pokémon API.
+## 🛠️ Tecnologías Usadas
+
+- **Angular** — Framework frontend
+- **TypeScript** — Lenguaje de programación
+- **PokeAPI** — API REST para datos de Pokémon
+- **Azure Static Web Apps** — Plataforma de despliegue
+- **GitHub Actions** — CI/CD automatizado
+- **GitHub Desktop** — Control de versiones
+
+---
+
+## 🔒 Seguridad
+
+La aplicación implementa los siguientes encabezados HTTP de seguridad configurados en `staticwebapp.config.json`:
+
+| Header | Propósito |
+|---|---|
+| `Content-Security-Policy` | Previene ataques XSS controlando qué recursos puede cargar la app |
+| `Strict-Transport-Security` | Obliga el uso de HTTPS durante 1 año |
+| `X-Content-Type-Options` | Evita la detección automática de tipos de archivo |
+| `X-Frame-Options` | Previene ataques de clickjacking mediante iframes |
+| `Referrer-Policy` | Minimiza la fuga de información en cabeceras HTTP |
+| `Permissions-Policy` | Deshabilita acceso a cámara, micrófono y GPS |
+
+### Resultados de Escaneo de Seguridad
+
+- 🔐 **securityheaders.com**: Calificación **A**
+- 🔒 **SSL Labs**: Calificación **A+**
+
+---
+
+## 🚀 Cómo Crear la Cuenta en Azure for Students
+
+1. Ingresar a [azure.microsoft.com/es-es/free/students](https://azure.microsoft.com/es-es/free/students/)
+2. Hacer clic en **"Activar ahora"**
+3. Iniciar sesión con el correo institucional universitario
+4. Completar la verificación de estudiante
+5. Aceptar los términos y condiciones
+6. La cuenta se activa con **$100 USD de crédito gratuito**
+
+---
+
+## 📋 Proceso de Despliegue
+
+Ver el archivo [Despliegue.md](./Despliegue.md) para el proceso detallado con comandos y configuraciones.
+
+---
+
+## 🧠 Reflexión Técnica
+
+### ¿Qué vulnerabilidades previenen los encabezados implementados?
+
+- **CSP** previene ataques XSS al controlar qué scripts y recursos se pueden cargar
+- **HSTS** previene ataques de downgrade forzando siempre HTTPS
+- **X-Frame-Options** previene clickjacking bloqueando iframes externos
+- **X-Content-Type-Options** previene la ejecución de archivos maliciosos disfrazados
+
+### ¿Qué aprendí sobre la relación entre despliegue y seguridad web?
+
+Aprendí que desplegar una aplicación sin considerar los encabezados HTTP de seguridad deja la app vulnerable a múltiples vectores de ataque. Azure Static Web Apps facilita la configuración de estos headers mediante el archivo `staticwebapp.config.json`, integrando seguridad desde el proceso de despliegue.
+
+### ¿Qué desafíos encontré?
+
+- Configurar correctamente el `Content-Security-Policy` para Angular, que requiere `unsafe-inline` y `unsafe-eval`
+- Resolver el error de política de Azure al seleccionar la región correcta
+- Sincronizar los commits locales con los cambios automáticos de Azure (Fetch origin)
+- Ajustar los dominios permitidos en el CSP para que las imágenes de Pokémon cargaran correctamente
+
+---
+
+*Desarrollado por Gersonjim — Pueblo Paleta Inc. / PumasLab*
